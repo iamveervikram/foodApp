@@ -10,7 +10,7 @@ const orderSlice=createSlice({
         addItemToCart(state,action){
             const newItemOnCart=action.payload;
             const existing = state.cartItems.find(item=>item.id===newItemOnCart.id)
-            console.log(existing)
+            // console.log(existing)
             if(!existing){
 
                 state.cartItems.push({
@@ -24,6 +24,16 @@ const orderSlice=createSlice({
             }
             else{
                 existing.quantity++;
+            }
+
+        },
+        removeItemFromCart(state,action){
+            const newItemOnCart=action.payload;
+            const existing = state.cartItems.find(item=>item.id===newItemOnCart.id)
+            if(existing.quantity > 0){
+                existing.quantity--;
+            }else{
+                existing.quantity = 0;
             }
 
         },

@@ -17,7 +17,11 @@ const PopularFoodList=({name,calorie,price,id})=>{
     function addHandling(name,price,id){
         dispatch(orderActions.addItemToCart({id,foodName:name,size:'12',eachPrice:price}))
         // setItemQ(itemQ+1)
-        console.log('dispatched')
+    }
+
+    function removeHandling(name,price,id){
+        dispatch(orderActions.removeItemFromCart({id,foodName:name,size:'12',eachPrice:price}))
+        // setItemQ(itemQ+1)
     }
 
 
@@ -56,12 +60,19 @@ const PopularFoodList=({name,calorie,price,id})=>{
                     <Foundation name="dollar" size={24} color="#fb6262" />
                     <Text style={{fontFamily:'Inter_500Medium',fontSize:16,textAlign:'center'}}> {price}</Text>
                 </View>
-                <TouchableOpacity onPress={()=>addHandling(name,price,id)} style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
+                <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
+                <TouchableOpacity onPress={()=>removeHandling(name,price,id)}>
                 <Entypo name="squared-minus" size={24} color="#fb6262" />
-                <Text style={{fontFamily:'Inter_400Regular',fontSize:16}}> {id === 'PPC12'?cartPPCtwelve.quantity:cartPMCtwelve.quantity} </Text>
-                <Entypo name="squared-plus" size={24} color="#fb6262" />
-
                 </TouchableOpacity>
+
+                <Text style={{fontFamily:'Inter_400Regular',fontSize:16}}> {id === 'PPC12'?cartPPCtwelve.quantity:cartPMCtwelve.quantity} </Text>
+
+                <TouchableOpacity onPress={()=>addHandling(name,price,id)}>
+                <Entypo name="squared-plus" size={24} color="#fb6262" />
+                </TouchableOpacity>
+
+
+                </View>
             </View>
         </View>
     );
